@@ -91,31 +91,6 @@ The project was built with a focus on production reliability, security, and scal
 
 ---
 
-## Architecture
-
-```
-volley-app/
-├── mobile/                  # Flutter application
-│   ├── core/                # Base classes, constants, DI setup
-│   ├── data/                # Repositories, data sources, models
-│   │   ├── remote/          # Dio HTTP clients, SignalR hubs
-│   │   └── local/           # Local storage, caching
-│   ├── domain/              # Use cases, entities, repository interfaces
-│   └── presentation/        # ViewModels, screens, widgets
-│       ├── screens/
-│       └── widgets/
-│
-└── backend/                 # .NET 8 API
-    ├── Controllers/          # REST API endpoints
-    ├── Services/             # Business logic layer
-    ├── Repositories/         # EF Core data access
-    ├── Hubs/                 # SignalR real-time hubs
-    ├── Jobs/                 # Hangfire background jobs
-    └── Infrastructure/       # Azure, logging, middleware config
-```
-
----
-
 ## Getting Started
 
 ### Prerequisites
@@ -129,75 +104,8 @@ volley-app/
 
 ### Mobile Setup
 
-```bash
-# Clone the repository
-git clone https://github.com/ibrahimturk25/volley-app.git
-cd volley-app/mobile
 
-# Install dependencies
-flutter pub get
 
-# Configure environment
-cp .env.example .env
-# Fill in your API base URL, Firebase config, SignalR hub URL
-
-# Run
-flutter run
-```
-
-### Backend Setup
-
-```bash
-cd volley-app/backend
-
-# Restore packages
-dotnet restore
-
-# Configure environment
-cp appsettings.example.json appsettings.Development.json
-# Fill in connection strings, JWT secret, Azure keys
-
-# Apply migrations
-dotnet ef database update
-
-# Run
-dotnet run
-```
-
----
-
-## Environment Variables
-
-### Mobile (`.env`)
-
-```
-API_BASE_URL=https://your-api.azurewebsites.net
-SIGNALR_HUB_URL=https://your-api.azurewebsites.net/hubs
-FIREBASE_PROJECT_ID=your-firebase-project
-```
-
-### Backend (`appsettings.json`)
-
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=...;Database=VolleyApp;...",
-    "Redis": "your-redis-connection-string"
-  },
-  "JwtSettings": {
-    "SecretKey": "your-secret-key",
-    "Issuer": "VolleyApp",
-    "ExpiryMinutes": 60
-  },
-  "AzureBlob": {
-    "ConnectionString": "DefaultEndpointsProtocol=https;...",
-    "ContainerName": "volley-media"
-  },
-  "ApplicationInsights": {
-    "ConnectionString": "InstrumentationKey=..."
-  }
-}
-```
 
 ---
 
